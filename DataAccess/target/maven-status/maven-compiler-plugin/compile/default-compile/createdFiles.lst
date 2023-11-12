@@ -1,0 +1,14 @@
+com\stackexcelero\dataAccess\dao\CrudOperations.class
+com\stackexcelero\dataAccess\DataAccessApp.class
+com\stackexcelero\dataAccess\model\Role.class
+com\stackexcelero\dataAccess\resource\UserResource.class
+com\stackexcelero\dataAccess\dao\UserDAO.class
+com\stackexcelero\dataAccess\model\Assignment.class
+module-info.class
+com\stackexcelero\dataAccess\utility\GuiceModule.class
+com\stackexcelero\dataAccess\dao\UserDAOImpl.class
+com\stackexcelero\dataAccess\model\Task.class
+com\stackexcelero\dataAccess\service\UserServiceImpl.class
+com\stackexcelero\dataAccess\model\User.class
+com\stackexcelero\dataAccess\service\UserService.class
+com\stackexcelero\dataAccess\utility\JPAInitializer.class

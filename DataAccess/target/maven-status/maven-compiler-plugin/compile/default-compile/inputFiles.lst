@@ -1,0 +1,14 @@
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\module-info.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\resource\UserResource.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\utility\GuiceModule.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\DataAccessApp.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\model\Task.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\dao\UserDAO.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\service\UserServiceImpl.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\dao\CrudOperations.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\model\User.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\service\UserService.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\dao\UserDAOImpl.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\model\Role.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\utility\JPAInitializer.java
+C:\Users\amand\eclipse-workspace\TeamSync\DataAccess\src\main\java\com\stackexcelero\dataAccess\model\Assignment.java

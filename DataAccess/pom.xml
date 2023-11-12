@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    	<groupId>com.stackexcelero</groupId>
+    	<artifactId>TeamSync</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>DataAccess</artifactId>
+    <name>DataAccess</name>
+    <packaging>jar</packaging>
+    <dependencies>
+		<!-- Logging API -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.21.1</version>
+		</dependency>
+
+		<!-- Guice extension for JPA integration -->
+		<dependency>
+		  <groupId>com.google.inject.extensions</groupId>
+		  <artifactId>guice-persist</artifactId>
+		  <version>7.0.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.inject</groupId>
+		    <artifactId>guice</artifactId>
+		    <version>7.0.0</version>
+		</dependency>
+
+		
+		<!-- Database API -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.6.0</version>
+		</dependency>
+		
+		<!-- JPA & Hibernate -->
+		<dependency>
+		    <groupId>jakarta.persistence</groupId>
+		    <artifactId>jakarta.persistence-api</artifactId>
+		    <version>3.1.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>jakarta.inject</groupId>
+		    <artifactId>jakarta.inject-api</artifactId>
+		    <version>2.0.1</version> 
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>6.3.0.Final</version>
+		</dependency>
+		
+		<!-- Jetty dependencies -->
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-server</artifactId>
+		    <version>11.0.7</version> <!-- Use the latest version -->
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-servlet</artifactId>
+		    <version>11.0.7</version> <!-- Use the latest version -->
+		</dependency>
+
+    </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+        <maven.compiler.testSource>18</maven.compiler.testSource>
+        <maven.compiler.testTarget>18</maven.compiler.testTarget>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+    <build>
+		<plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.11.0</version> 
+	
+	            <!-- Configure the compiler -->
+	            <configuration>
+	                <source>18</source> 
+	                <target>18</target> 
+	                <encoding>UTF-8</encoding> 
+	            </configuration>
+	        </plugin>
+	    </plugins>
+		<resources>
+		    <resource>
+		        <directory>src/main/resources</directory>
+		    </resource>
+		</resources>
+        <finalName>DataAccess</finalName>
+    </build>
+</project>
