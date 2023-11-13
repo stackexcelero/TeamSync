@@ -3,12 +3,13 @@ module dataAccess {
 	exports com.stackexcelero.dataAccess;
 	exports com.stackexcelero.dataAccess.utility;
 	exports com.stackexcelero.dataAccess.dao;
+	exports com.stackexcelero.dataAccess.model;
 
 	requires java.se;
 	requires org.postgresql.jdbc;
 	
 	requires org.hibernate.orm.core;
-	requires jakarta.persistence;
+	requires transitive jakarta.persistence;
 	requires jakarta.inject;
 
 	requires com.google.guice;

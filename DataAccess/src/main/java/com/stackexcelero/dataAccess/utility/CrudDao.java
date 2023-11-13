@@ -1,8 +1,8 @@
-package com.stackexcelero.dataAccess.dao;
+package com.stackexcelero.dataAccess.utility;
 
 import java.util.List;
 
-public interface CrudOperations<T> {
+public interface CrudDao<T> {
 	T findById(int id);
     List<T> findAll();
     void save(T entity);

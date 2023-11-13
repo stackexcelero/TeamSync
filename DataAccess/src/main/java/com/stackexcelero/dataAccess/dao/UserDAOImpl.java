@@ -7,7 +7,7 @@ import com.google.inject.Provider;
 import com.stackexcelero.dataAccess.model.User;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 public class UserDAOImpl implements UserDAO{
@@ -26,54 +26,34 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findById(int id) {
         EntityManager em = createEntityManager();
-        try {
-            return em.find(User.class, id);
-        } finally {
-            em.close();
-        }
+        return em.find(User.class, id);
     }
 
     @Override
     public List<User> findAll() {
         EntityManager em = createEntityManager();
-        try {
-            TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
+        TypedQuery<User> query = em.createQuery("SELECT u FROM appuser u", User.class);
+        return query.getResultList();
     }
 
     @Override
     public void save(User entity) {
-        EntityManager em = createEntityManager();
-        try {
-            em.persist(entity);
-        } finally {
-            em.close();
-        }
+    	EntityManager em = createEntityManager();
+        em.persist(entity);
     }
 
     @Override
     public void update(User entity) {
         EntityManager em = createEntityManager();
-        try {
-            em.merge(entity);
-        } finally {
-            em.close();
-        }
+        em.merge(entity);
     }
 
     @Override
     public void delete(int id) {
         EntityManager em = createEntityManager();
-        try {
-            User user = em.find(User.class, id);
-            if (user != null) {
-                em.remove(user);
-            }
-        } finally {
-            em.close();
+        User user = em.find(User.class, id);
+        if (user != null) {
+            em.remove(user);
         }
     }
 

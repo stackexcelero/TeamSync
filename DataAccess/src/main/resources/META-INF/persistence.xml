@@ -9,6 +9,11 @@
     	<description>Persistence unit used for Postgres database</description>
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	
+    	<class>com.stackexcelero.dataAccess.model.Assignment</class>
+    	<class>com.stackexcelero.dataAccess.model.Role</class>
+    	<class>com.stackexcelero.dataAccess.model.Task</class>
+    	<class>com.stackexcelero.dataAccess.model.User</class>
+    	
         <properties>
  
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost/TeamSync" />
