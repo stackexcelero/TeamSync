@@ -83,5 +83,12 @@ public class User {
 	public void setAssignedAssignments(Set<Assignment> assignedAssignments) {
 		this.assignedAssignments = assignedAssignments;
 	}
-	
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 }

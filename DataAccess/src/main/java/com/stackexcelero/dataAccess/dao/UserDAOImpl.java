@@ -12,28 +12,28 @@ import jakarta.persistence.TypedQuery;
 
 public class UserDAOImpl implements UserDAO{
 	
-	private final Provider<EntityManagerFactory> emfProvider;
+	private final Provider<EntityManager> emProvider;
 
     @Inject
-    public UserDAOImpl(Provider<EntityManagerFactory> emfProvider) {
-        this.emfProvider = emfProvider;
+    public UserDAOImpl(Provider<EntityManager> emProvider) {
+        this.emProvider = emProvider;
     }
     
     private EntityManager createEntityManager() {
-        return emfProvider.get().createEntityManager();
+        return emProvider.get();
     }
 
-	@Override
-	public User findById(int id) {
-		EntityManager em = createEntityManager();
-		try {
+    @Override
+    public User findById(int id) {
+        EntityManager em = createEntityManager();
+        try {
             return em.find(User.class, id);
         } finally {
             em.close();
         }
-	}
+    }
 
-	@Override
+    @Override
     public List<User> findAll() {
         EntityManager em = createEntityManager();
         try {
@@ -48,9 +48,7 @@ public class UserDAOImpl implements UserDAO{
     public void save(User entity) {
         EntityManager em = createEntityManager();
         try {
-            em.getTransaction().begin();
             em.persist(entity);
-            em.getTransaction().commit();
         } finally {
             em.close();
         }
@@ -60,9 +58,7 @@ public class UserDAOImpl implements UserDAO{
     public void update(User entity) {
         EntityManager em = createEntityManager();
         try {
-            em.getTransaction().begin();
             em.merge(entity);
-            em.getTransaction().commit();
         } finally {
             em.close();
         }
@@ -74,9 +70,7 @@ public class UserDAOImpl implements UserDAO{
         try {
             User user = em.find(User.class, id);
             if (user != null) {
-                em.getTransaction().begin();
                 em.remove(user);
-                em.getTransaction().commit();
             }
         } finally {
             em.close();

@@ -1,7 +1,8 @@
 module dataAccess {
 	
-	exports com.stackexcelero.dataAccess.service;
+	exports com.stackexcelero.dataAccess;
 	exports com.stackexcelero.dataAccess.utility;
+	exports com.stackexcelero.dataAccess.dao;
 
 	requires java.se;
 	requires org.postgresql.jdbc;

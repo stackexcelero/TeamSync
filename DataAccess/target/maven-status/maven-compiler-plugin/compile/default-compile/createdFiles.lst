@@ -1,7 +1,6 @@
 com\stackexcelero\dataAccess\dao\CrudOperations.class
 com\stackexcelero\dataAccess\DataAccessApp.class
 com\stackexcelero\dataAccess\model\Role.class
-com\stackexcelero\dataAccess\resource\UserResource.class
 com\stackexcelero\dataAccess\dao\UserDAO.class
 com\stackexcelero\dataAccess\model\Assignment.class
 module-info.class
