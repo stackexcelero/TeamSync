@@ -13,18 +13,17 @@ import com.stackexcelero.dataAccess.model.Assignment;
 import com.stackexcelero.dataAccess.model.Role;
 import com.stackexcelero.dataAccess.model.Task;
 import com.stackexcelero.dataAccess.model.User;
+import com.stackexcelero.dataAccess.service.UserService;
 import com.stackexcelero.dataAccess.utility.GuiceModule;
 
 public class DataAccessApp {
 	
 	
-	public final UserDAO userDAO;
-	public final AssignmentDAO assignmentDAO;
+	public final UserService userService;
 	
 	@Inject
-	public DataAccessApp(UserDAO userDAO, AssignmentDAO assignmentDAO) {
-		this.userDAO = userDAO;
-		this.assignmentDAO = assignmentDAO;
+	public DataAccessApp(UserService userService) {
+		this.userService = userService;
 	}
 
 	public static void main(String[] args) {
@@ -56,24 +55,17 @@ public class DataAccessApp {
 	    employeeRole.setRoleName("Employee");
 	    Role managerRole = new Role();
 	    managerRole.setRoleName("Manager");
-
-	    // Save the User instances first
-	    userDAO.save(manager);
-	    userDAO.save(employee);
-
-	    // Refresh the entities to get the managed instances
-	    manager = userDAO.findById(manager.getUserId());
-	    employee = userDAO.findById(employee.getUserId());
-
-	    Assignment assignment = new Assignment();
-	    Task task = new Task();
-
+	    
 	    employee.setRoles(new HashSet<>(Set.of(employeeRole)));
 	    manager.setRoles(new HashSet<>(Set.of(managerRole)));
+	    
+	    Assignment assignment = new Assignment();
+	    Task task = new Task();
 
 	    task.setCompleted(false);
 	    task.setTitle("Do 10 pushups");
 	    task.setDescription("With one hand");
+	    task.setAssignment(assignment);
 
 	    assignment.setAssignedBy(manager);
 	    assignment.setAssignedTo(employee);
@@ -85,7 +77,8 @@ public class DataAccessApp {
 
 	    try {
 	        // Now, save the Assignment entity
-	        assignmentDAO.save(assignment);
+	    	userService.createUser(employee);
+	    	userService.createUser(manager);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

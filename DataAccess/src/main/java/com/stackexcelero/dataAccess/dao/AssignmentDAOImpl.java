@@ -1,13 +1,13 @@
 package com.stackexcelero.dataAccess.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.stackexcelero.dataAccess.model.Assignment;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 public class AssignmentDAOImpl implements AssignmentDAO{
@@ -24,67 +24,36 @@ public class AssignmentDAOImpl implements AssignmentDAO{
     }
 
     @Override
-    public Assignment findById(int id) {
+    public Optional<Assignment> findById(int id) {
         EntityManager em = createEntityManager();
-        try {
-            return em.find(Assignment.class, id);
-        } finally {
-            em.close();
-        }
+        return Optional.ofNullable(em.find(Assignment.class, id));
     }
 
     @Override
     public List<Assignment> findAll() {
         EntityManager em = createEntityManager();
-        try {
-            TypedQuery<Assignment> query = em.createQuery("SELECT u FROM assignment u", Assignment.class);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
+        TypedQuery<Assignment> query = em.createQuery("SELECT u FROM assignment u", Assignment.class);
+        return query.getResultList();
     }
 
     @Override
     public void save(Assignment entity) {
     	EntityManager em = createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-        
-        try {
-            transaction.begin(); // begin the transaction
-            em.persist(entity);
-            transaction.commit(); // commit the transaction
-        } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback(); // rollback if an exception occurs
-            }
-            e.printStackTrace();
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close(); // close the EntityManager only if it's open
-            }
-        }
+        em.persist(entity);
     }
 
     @Override
     public void update(Assignment entity) {
         EntityManager em = createEntityManager();
-        try {
-            em.merge(entity);
-        } finally {
-            em.close();
-        }
+        em.merge(entity);
     }
 
     @Override
     public void delete(int id) {
         EntityManager em = createEntityManager();
-        try {
-        	Assignment user = em.find(Assignment.class, id);
-            if (user != null) {
-                em.remove(user);
-            }
-        } finally {
-            em.close();
+    	Assignment user = em.find(Assignment.class, id);
+        if (user != null) {
+            em.remove(user);
         }
     }
 

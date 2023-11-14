@@ -1,6 +1,7 @@
 package com.stackexcelero.dataAccess.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -24,15 +25,15 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public User findById(int id) {
+    public Optional<User> findById(int id) {
         EntityManager em = createEntityManager();
-        return em.find(User.class, id);
+        return Optional.ofNullable(em.find(User.class, id));
     }
 
     @Override
     public List<User> findAll() {
         EntityManager em = createEntityManager();
-        TypedQuery<User> query = em.createQuery("SELECT u FROM appuser u", User.class);
+        TypedQuery<User> query = em.createQuery("SELECT u FROM app_user u", User.class);
         return query.getResultList();
     }
 

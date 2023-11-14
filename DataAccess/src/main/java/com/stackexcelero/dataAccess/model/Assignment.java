@@ -8,6 +8,7 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -48,15 +49,15 @@ public class Assignment {
 	@JdbcTypeCode(SqlTypes.LONGVARCHAR)
 	private Long updatedEstimation ;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedTo")
 	private User assignedTo;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedBy")
 	private User assignedBy;
 	
-	@OneToMany(mappedBy ="assignment", cascade = CascadeType.ALL)  
+	@OneToMany(mappedBy ="assignment", cascade = CascadeType.ALL, orphanRemoval = true)  
 	Set<Task> tasks = new LinkedHashSet<Task>();
 
 	public Integer getAssignmentId() {

@@ -1,13 +1,13 @@
 package com.stackexcelero.dataAccess.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.stackexcelero.dataAccess.model.Role;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 public class RoleDAOImpl implements RoleDAO{
@@ -24,67 +24,36 @@ public class RoleDAOImpl implements RoleDAO{
     }
 
     @Override
-    public Role findById(int id) {
+    public Optional<Role> findById(int id) {
         EntityManager em = createEntityManager();
-        try {
-            return em.find(Role.class, id);
-        } finally {
-            em.close();
-        }
+        return Optional.ofNullable(em.find(Role.class, id));
     }
 
     @Override
     public List<Role> findAll() {
         EntityManager em = createEntityManager();
-        try {
-            TypedQuery<Role> query = em.createQuery("SELECT u FROM role u", Role.class);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
+        TypedQuery<Role> query = em.createQuery("SELECT u FROM role u", Role.class);
+        return query.getResultList();
     }
 
     @Override
     public void save(Role entity) {
     	EntityManager em = createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-        
-        try {
-            transaction.begin(); // begin the transaction
-            em.persist(entity);
-            transaction.commit(); // commit the transaction
-        } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback(); // rollback if an exception occurs
-            }
-            e.printStackTrace();
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close(); // close the EntityManager only if it's open
-            }
-        }
+        em.persist(entity);
     }
 
     @Override
     public void update(Role entity) {
         EntityManager em = createEntityManager();
-        try {
-            em.merge(entity);
-        } finally {
-            em.close();
-        }
+        em.merge(entity);
     }
 
     @Override
     public void delete(int id) {
         EntityManager em = createEntityManager();
-        try {
-        	Role user = em.find(Role.class, id);
-            if (user != null) {
-                em.remove(user);
-            }
-        } finally {
-            em.close();
+    	Role user = em.find(Role.class, id);
+        if (user != null) {
+            em.remove(user);
         }
     }
     

@@ -1,9 +1,10 @@
 package com.stackexcelero.dataAccess.utility;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CrudService<T> {
-	T getUserById(int userId);
+	Optional<T> getUserById(int userId);
 
     List<T> getAllUsers();
 
