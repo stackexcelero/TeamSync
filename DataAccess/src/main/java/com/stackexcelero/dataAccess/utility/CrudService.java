@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CrudService<T> {
-	Optional<T> getUserById(int userId);
+	Optional<T> getUserById(int id);
 
-    List<T> getAllUsers();
+    List<T> getAll();
 
-    void createUser(T user);
+    void create(T entity);
 
-    void updateUser(T user);
+    void update(T entity);
 
-    void deleteUser(int userId);
+    void delete(int id);
 }

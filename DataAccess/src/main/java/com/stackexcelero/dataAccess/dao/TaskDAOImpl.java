@@ -38,7 +38,11 @@ public class TaskDAOImpl implements TaskDAO{
     @Override
     public void save(Task entity) {
     	EntityManager em = createEntityManager();
-        em.persist(entity);
+    	if (entity.getTaskId() == null) {
+            em.persist(entity);
+        } else {
+            em.merge(entity);
+        }
     }
 
     @Override

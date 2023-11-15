@@ -3,7 +3,6 @@ package com.stackexcelero.dataAccess.model;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -30,10 +29,10 @@ public class User {
 	@Column(name="userId")
 	private Integer userId;
 	
-	@Basic
+	@Column(unique = true, name="username", nullable=false, length=50)
 	private String username;
 	
-	@Basic
+	@Column(name="password", nullable=false, length=20)
 	private String password;
 	
 	@OneToMany(mappedBy ="assignedTo", cascade = CascadeType.ALL)  

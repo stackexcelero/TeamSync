@@ -77,21 +77,11 @@ public class DataAccessApp {
 
 	    try {
 	        // Now, save the Assignment entity
-	    	userService.createUser(employee);
-	    	userService.createUser(manager);
+	    	userService.create(employee);
+	    	userService.create(manager);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 	}
-
-//	private static Injector initialize() {
-//		// Initialize Guice injector
-//        Injector injector = Guice.createInjector(new GuiceModule());
-//
-//        // Get jpaInitializer guice singleton instance from the injector
-//        //jpaInitializer = injector.getInstance(JPAInitializer.class);
-//        
-//        return injector;
-//	}
 
 }

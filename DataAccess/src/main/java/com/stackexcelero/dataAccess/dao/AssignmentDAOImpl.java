@@ -39,7 +39,11 @@ public class AssignmentDAOImpl implements AssignmentDAO{
     @Override
     public void save(Assignment entity) {
     	EntityManager em = createEntityManager();
-        em.persist(entity);
+    	if (entity.getAssignmentId() == null) {
+            em.persist(entity);
+        } else {
+            em.merge(entity);
+        }
     }
 
     @Override

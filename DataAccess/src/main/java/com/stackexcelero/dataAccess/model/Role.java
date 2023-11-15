@@ -20,7 +20,7 @@ public class Role {
 	@Column(name="roleId")
 	private Integer roleId;
 	
-	@Basic
+	@Column(unique = true, name="roleName", nullable=false, length=30)
 	private String roleName;
 	
 	@ManyToMany(mappedBy="roles")

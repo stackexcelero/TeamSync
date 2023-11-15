@@ -29,6 +29,17 @@ public class UserDAOImpl implements UserDAO{
         EntityManager em = createEntityManager();
         return Optional.ofNullable(em.find(User.class, id));
     }
+    @Override
+    public Optional<User> findByUsername(String username) {
+    	if(username == null || username.isBlank()) {
+            return Optional.empty();
+        }
+        EntityManager em = createEntityManager();
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+        query.setParameter("username", username);
+        List<User> users = query.getResultList();
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
+    }
 
     @Override
     public List<User> findAll() {
@@ -40,7 +51,11 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void save(User entity) {
     	EntityManager em = createEntityManager();
-        em.persist(entity);
+    	if (entity.getUserId() == null) {
+            em.persist(entity);
+        } else {
+            em.merge(entity);
+        }
     }
 
     @Override

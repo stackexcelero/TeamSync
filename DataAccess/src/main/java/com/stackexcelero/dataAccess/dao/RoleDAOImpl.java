@@ -28,6 +28,18 @@ public class RoleDAOImpl implements RoleDAO{
         EntityManager em = createEntityManager();
         return Optional.ofNullable(em.find(Role.class, id));
     }
+    
+    @Override
+    public Optional<Role> findByRoleName(String roleName) {
+    	
+    	if(roleName==null || roleName.isBlank())
+    		return Optional.empty();
+    	EntityManager em = createEntityManager();
+        TypedQuery<Role> query = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
+        query.setParameter("roleName", roleName);
+        List<Role> roles = query.getResultList();
+        return roles.isEmpty() ? Optional.empty() : Optional.of(roles.get(0));
+    }
 
     @Override
     public List<Role> findAll() {
@@ -39,7 +51,11 @@ public class RoleDAOImpl implements RoleDAO{
     @Override
     public void save(Role entity) {
     	EntityManager em = createEntityManager();
-        em.persist(entity);
+    	if (entity.getRoleId() == null) {
+            em.persist(entity);
+        } else {
+            em.merge(entity);
+        }
     }
 
     @Override

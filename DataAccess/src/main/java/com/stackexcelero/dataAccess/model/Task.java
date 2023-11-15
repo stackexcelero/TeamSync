@@ -19,13 +19,13 @@ public class Task {
 	@Column(name="taskId")
 	private Integer taskId;
 	
-	@Basic
+	@Column(name="title", nullable=false, length=50)
 	private String title;
 	
-	@Basic
+	@Column(name="description", length=500)
     private String description;
 	
-	@Column(name="completed", columnDefinition="BOOLEAN")
+	@Column(name="completed", columnDefinition="BOOLEAN", nullable = false)
     private boolean completed;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
