@@ -77,8 +77,7 @@ public class DataAccessApp {
 
 	    try {
 	        // Now, save the Assignment entity
-	    	userService.create(employee);
-	    	userService.create(manager);
+	    	userService.create(employee); //cascade saves manager as well
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

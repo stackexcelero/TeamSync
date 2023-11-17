@@ -27,6 +27,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public Optional<User> findById(int id) {
         EntityManager em = createEntityManager();
+        em.flush();
         return Optional.ofNullable(em.find(User.class, id));
     }
     @Override
@@ -35,6 +36,7 @@ public class UserDAOImpl implements UserDAO{
             return Optional.empty();
         }
         EntityManager em = createEntityManager();
+        em.flush();
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
         query.setParameter("username", username);
         List<User> users = query.getResultList();

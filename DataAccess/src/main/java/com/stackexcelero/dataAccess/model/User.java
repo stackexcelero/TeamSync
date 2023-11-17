@@ -1,6 +1,7 @@
 package com.stackexcelero.dataAccess.model;
 
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -91,6 +92,31 @@ public class User {
 
 	public Set<Role> getRoles() {
 		return roles;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(assignedAssignments, password, receivedAssignments, roles, userId, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(assignedAssignments, other.assignedAssignments)
+				&& Objects.equals(password, other.password)
+				&& Objects.equals(receivedAssignments, other.receivedAssignments) && Objects.equals(roles, other.roles)
+				&& Objects.equals(userId, other.userId) && Objects.equals(username, other.username);
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
 	}
 
 	public void setRoles(Set<Role> roles) {

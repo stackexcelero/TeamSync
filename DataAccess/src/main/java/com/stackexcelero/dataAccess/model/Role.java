@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Role {
 	@Column(unique = true, name="roleName", nullable=false, length=30)
 	private String roleName;
 	
-	@ManyToMany(mappedBy="roles")
+	@ManyToMany(mappedBy="roles", cascade = CascadeType.ALL)
 	Set<User> users = new LinkedHashSet<>();
 
 	public Integer getRoleId() {

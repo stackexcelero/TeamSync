@@ -1,6 +1,18 @@
 package com.stackexcelero.dataAccess.service;
 
-import com.stackexcelero.dataAccess.model.User;
-import com.stackexcelero.dataAccess.utility.CrudService;
+import java.util.List;
+import java.util.Optional;
 
-public interface UserService extends CrudService<User>{}
+import com.stackexcelero.dataAccess.model.User;
+
+public interface UserService{ 
+	Optional<User> find(User userInput);
+
+    List<User> findAll();
+
+    void create(User userInput);
+
+    void update(User userInput);
+
+    void delete(User userInput);
+}

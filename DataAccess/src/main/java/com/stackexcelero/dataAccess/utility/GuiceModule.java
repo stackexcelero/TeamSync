@@ -14,6 +14,10 @@ import com.stackexcelero.dataAccess.dao.TaskDAO;
 import com.stackexcelero.dataAccess.dao.TaskDAOImpl;
 import com.stackexcelero.dataAccess.dao.UserDAO;
 import com.stackexcelero.dataAccess.dao.UserDAOImpl;
+import com.stackexcelero.dataAccess.service.AssignmentService;
+import com.stackexcelero.dataAccess.service.AssignmentServiceImpl;
+import com.stackexcelero.dataAccess.service.RoleService;
+import com.stackexcelero.dataAccess.service.RoleServiceImpl;
 import com.stackexcelero.dataAccess.service.UserService;
 import com.stackexcelero.dataAccess.service.UserServiceImpl;
 
@@ -39,6 +43,8 @@ public class GuiceModule extends AbstractModule {
 		
 		//Service Layer
 		bind(UserService.class).to(UserServiceImpl.class);
+		bind(RoleService.class).to(RoleServiceImpl.class);
+		bind(AssignmentService.class).to(AssignmentServiceImpl.class);
 		
 	}
 	
