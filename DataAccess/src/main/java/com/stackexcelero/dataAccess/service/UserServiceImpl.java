@@ -1,14 +1,11 @@
 package com.stackexcelero.dataAccess.service;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collector;
 
 import com.google.inject.Inject;
-import com.google.inject.persist.Transactional;
 import com.stackexcelero.dataAccess.dao.AssignmentDAO;
 import com.stackexcelero.dataAccess.dao.RoleDAO;
 import com.stackexcelero.dataAccess.dao.TaskDAO;
@@ -16,7 +13,6 @@ import com.stackexcelero.dataAccess.dao.UserDAO;
 import com.stackexcelero.dataAccess.exception.InvalidUserInputException;
 import com.stackexcelero.dataAccess.model.Assignment;
 import com.stackexcelero.dataAccess.model.Role;
-import com.stackexcelero.dataAccess.model.Task;
 import com.stackexcelero.dataAccess.model.User;
 
 public class UserServiceImpl implements UserService{

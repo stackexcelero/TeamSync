@@ -24,7 +24,7 @@ public class Role {
 	@Column(unique = true, name="roleName", nullable=false, length=30)
 	private String roleName;
 	
-	@ManyToMany(mappedBy="roles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="roles")
 	Set<User> users = new LinkedHashSet<>();
 
 	public Integer getRoleId() {
