@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.stackexcelero.dataAccess.model.Assignment;
+import com.stackexcelero.dataAccess.model.User;
 
 public interface AssignmentService {
 	Optional<Assignment> find(Assignment assignmentInput);
@@ -15,4 +16,7 @@ public interface AssignmentService {
     void update(Assignment assignmentInput);
 
     void delete(Assignment assignmentInput);
+    
+    void updateExecutor(Assignment assignment, User executor);
+    void updateInitiator(Assignment assignment, User initiator);
 }

@@ -42,7 +42,7 @@ public class User {
 	@OneToMany(mappedBy ="assignedBy", cascade = CascadeType.ALL, orphanRemoval = true)  
 	Set<Assignment> assignedAssignments = new LinkedHashSet<Assignment>();
 	
-	@ManyToMany(cascade = CascadeType.REFRESH)
+	@ManyToMany
     @JoinTable(
         name = "user_role",
         joinColumns = @JoinColumn(name = "userId"),

@@ -9,6 +9,7 @@ import com.stackexcelero.dataAccess.dao.RoleDAO;
 import com.stackexcelero.dataAccess.dao.TaskDAO;
 import com.stackexcelero.dataAccess.dao.UserDAO;
 import com.stackexcelero.dataAccess.model.Assignment;
+import com.stackexcelero.dataAccess.model.User;
 
 public class AssignmentServiceImpl implements AssignmentService{
 	
@@ -57,5 +58,13 @@ public class AssignmentServiceImpl implements AssignmentService{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//TODO: Implement this
+	@Override
+	public void updateExecutor(Assignment assignment, User executor) {}
+	
+	//TODO: Implement this
+	@Override
+	public void updateInitiator(Assignment assignment, User initiator) {}
 
 }

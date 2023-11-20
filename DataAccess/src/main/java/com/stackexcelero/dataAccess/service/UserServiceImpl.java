@@ -67,8 +67,8 @@ public class UserServiceImpl implements UserService{
 	    }
 		
 		//finds user by id or by username. Or else throws exception
-		User existingUser = find(inputUser).orElseThrow(() -> 
-        new InvalidUserInputException("User not found with provided details - " + inputUser));
+		User existingUser = findOrCreateUser(inputUser)
+				.orElseThrow(() -> new InvalidUserInputException("User not found with provided details - " + inputUser));
 
     	existingUser.setUsername(inputUser.getUsername());
     	existingUser.setPassword(inputUser.getPassword());
@@ -77,7 +77,8 @@ public class UserServiceImpl implements UserService{
     	updateAssignments(inputUser.getAssignedAssignments(), existingUser);
     	updateAssignments(inputUser.getReceivedAssignments(), existingUser);
 	}
-	
+
+
 	//TODO: Cascade operations in many-to-many relationships can lead to complex scenarios, 
 	//      handling these operations manually in service layer might be more prudent.
 	//      This way, i can precisely control what happens when adding or removing entities from relationships.
@@ -141,13 +142,13 @@ public class UserServiceImpl implements UserService{
 		newAssignment.setUpdatedEstimation(inputAssignment.getUpdatedEstimation());
 		
 		// Setting associated users
-	    newAssignment.setAssignedBy(findOrCreateUser(inputAssignment.getAssignedBy()));
-	    newAssignment.setAssignedTo(findOrCreateUser(inputAssignment.getAssignedTo()));
+	    newAssignment.setInitiator(findOrCreateUser(inputAssignment.getInitiator()).get());
+	    newAssignment.setExecutor(findOrCreateUser(inputAssignment.getExecutor()).get());
 		
 		return newAssignment;
 	}
 	
-	private User findOrCreateUser(User inputUser) {
+	private Optional<User> findOrCreateUser(User inputUser) {
 		if (inputUser == null) {
 			throw new InvalidUserInputException();
 		}
@@ -159,12 +160,12 @@ public class UserServiceImpl implements UserService{
 	    if(existingUser.isPresent()) {
 	    	buffer = existingUser.get();
 	    	System.out.println("Existing user fetched --> " + buffer);
-	    	return buffer;
+	    	
 	    }else {
 	    	buffer = persistUser(inputUser);
 	    	System.out.println("Created new user --> " + buffer);
-	    	return buffer;
 	    }
+	    return Optional.of(buffer);
 	}
 	private User persistUser(User user) {
 	    User newUser = new User();

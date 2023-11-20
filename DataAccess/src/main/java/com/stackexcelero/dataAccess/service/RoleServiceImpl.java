@@ -25,6 +25,13 @@ public class RoleServiceImpl implements RoleService{
         this.assignmentDAO = assignmentDAO;
         this.taskDAO = taskDAO;
     }
+    
+    @Override
+    public Optional<Role> find(Role inputRole) {
+    	return Optional.ofNullable(inputRole.getRoleId())
+    			.flatMap(roleDAO::findById)
+    			.or(() -> roleDAO.findByRoleName(inputRole.getRoleName()));
+    }
 
 	@Override
 	public List<Role> findAll() {
@@ -48,12 +55,9 @@ public class RoleServiceImpl implements RoleService{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	// TODO: User and Role must exist in database.
+	// 		 This method manages the many-to-many relationship Between User and Role
 	@Override
-	public Optional<Role> find(Role inputRole) {
-		return Optional.ofNullable(inputRole.getRoleId())
-                .flatMap(roleDAO::findById)
-                .or(() -> roleDAO.findByRoleName(inputRole.getRoleName()));
-	}
-
+	public void associateUser(Role existingRole, User existingUser) {}
 }

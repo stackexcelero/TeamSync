@@ -50,12 +50,12 @@ public class Assignment {
 	private Long updatedEstimation ;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "assignedTo")
-	private User assignedTo;
+	@JoinColumn(name = "executor")
+	private User executor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "assignedBy")
-	private User assignedBy;
+	@JoinColumn(name = "initiator")
+	private User initiator;
 	
 	@OneToMany(mappedBy ="assignment", cascade = CascadeType.ALL, orphanRemoval = true)  
 	Set<Task> tasks = new LinkedHashSet<Task>();
@@ -100,27 +100,27 @@ public class Assignment {
 		this.updatedEstimation = updatedEstimation;
 	}
 
-	public User getAssignedTo() {
-		return assignedTo;
-	}
-
-	public void setAssignedTo(User assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-
-	public User getAssignedBy() {
-		return assignedBy;
-	}
-
-	public void setAssignedBy(User assignedBy) {
-		this.assignedBy = assignedBy;
-	}
-
 	public Set<Task> getTasks() {
 		return tasks;
 	}
 
 	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public User getExecutor() {
+		return executor;
+	}
+
+	public void setExecutor(User executor) {
+		this.executor = executor;
+	}
+
+	public User getInitiator() {
+		return initiator;
+	}
+
+	public void setInitiator(User initiator) {
+		this.initiator = initiator;
 	}
 }

@@ -67,8 +67,8 @@ public class DataAccessApp {
 	    task.setDescription("With one hand");
 	    task.setAssignment(assignment);
 
-	    assignment.setAssignedBy(manager);
-	    assignment.setAssignedTo(employee);
+	    assignment.setInitiator(manager);
+	    assignment.setExecutor(employee);
 	    assignment.setAssignedDate(Calendar.getInstance());
 	    assignment.setTasks(new HashSet<>(Set.of(task)));
 
