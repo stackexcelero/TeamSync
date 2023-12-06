@@ -1,8 +1,7 @@
 
 # TeamSync
 
-Monitoring and performance tracking software aims to provide a comprehensive solution for modern workplaces, enhancing productivity, collaboration, and decision-making. To clarify the project's boundaries and deliverables, we define the project scope as follows:
-Task Assignment and Progress: Enable managers to assign tasks, set deadlines, and track progress on assigned tasks.
+Monitoring and performance tracking software aims to provide a comprehensive solution for modern workplaces, enhancing productivity, collaboration, and decision-making. To clarify the project's boundaries and deliverables, we define the project scope as follows: Enable managers to assign tasks, set deadlines, and track progress on assigned tasks.
 
 
 •Performance Monitoring: The software will track and report on key performance metrics, enabling organizations to assess productivity and efficiency.
